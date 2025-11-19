@@ -23,20 +23,47 @@ public class SecurityConfig {
 	private UserDetailsService userDetailsService;
 	@Bean 
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		return http.csrf(customizer -> customizer.disable())
-				.authorizeHttpRequests(request -> request.anyRequest().authenticated())
-				.httpBasic(Customizer.withDefaults())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.build();
+		return http.
+				csrf(customizer -> customizer.disable()).
+                authorizeHttpRequests(request -> request.anyRequest().authenticated()).
+                httpBasic(Customizer.withDefaults()).
+                sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+//				.csrf(customizer -> customizer.disable()).
+//                authorizeHttpRequests(request -> request.anyRequest().authenticated()).
+//                authenticationProvider(authenticationProvider().
+//                httpBasic(Customizer.withDefaults()).
+//                sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).
+//                build();
+//				.csrf(csrf -> csrf.disable())
+//	            .authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+//	            .authenticationProvider(authenticationProvider)   // <-- REQUIRED!
+//	            .httpBasic(Customizer.withDefaults())
+//	            .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//	            .build();
+				
 	}
 	@Bean
+//	public AuthenticationProvider authenticationProvider() {
+//		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+//        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+//        provider.setUserDetailsService(userDetailsService);
+//
+//
+//        return provider;
+//		
+//	}
 	public AuthenticationProvider authenticationProvider() {
+//	    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+//	    provider.setUserDetailsService(userDetailsService);
+//	    provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+//	    return provider;
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-		provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
-		provider.setUserDetailsService(userDetailsService);
-		return provider	;
-		
+        provider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        provider.setUserDetailsService(userDetailsService);
+
+
+        return provider;
 	}
-	
+//	
 
 }

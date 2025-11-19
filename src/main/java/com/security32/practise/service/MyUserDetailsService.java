@@ -18,11 +18,11 @@ public class MyUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
 		Users user = repo.findByUsername(username);
 		System.out.println(user);
+		System.out.println(user);
 		if (user == null) {
-			System.out.println("User Not Found! ");
+			System.out.println("User Not Found! " + user);
 			throw new UsernameNotFoundException("userNotFount_ByException!");
 		}
 		return new UserPrincipal(user);
