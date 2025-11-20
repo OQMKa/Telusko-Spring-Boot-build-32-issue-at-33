@@ -23,9 +23,11 @@ public class SecurityConfig {
 	private UserDetailsService userDetailsService;
 	@Bean 
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		System.out.println("here at SecurityCofig>SecurityFilterChain class");
 		return http.
 				csrf(customizer -> customizer.disable()).
                 authorizeHttpRequests(request -> request.anyRequest().authenticated()).
+                authenticationProvider(authenticationProvider()).
                 httpBasic(Customizer.withDefaults()).
                 sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
 //				.csrf(customizer -> customizer.disable()).

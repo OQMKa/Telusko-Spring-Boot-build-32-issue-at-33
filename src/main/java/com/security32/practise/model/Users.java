@@ -9,6 +9,10 @@ public class Users {
 	private int id;
 	private String username;
 	private String password;
+	public Users() {
+	    // JPA requires a default constructor
+	}
+
 	public int getId() {
 		return id;
 	}
