@@ -42,7 +42,7 @@ public class UserService {
         (new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
 		// TODO Auto-generated method stub
         if (authentication.isAuthenticated()) {
-         return jwtService.generateToken()  ;
+         return jwtService.generateToken(user.getUsername())  ;
         } else {
             return "fail";
         }
